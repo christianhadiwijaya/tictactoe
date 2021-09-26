@@ -52,9 +52,14 @@ class TicTacToe:
 
         player_input = int(player_input)
 
-        # -1 for exit
+        # For exit
         if player_input == self.EXIT:
             return True
+
+        # Make sure correct tile number by checking if key is in dictionary
+        if player_input not in self.tiles:
+            print("Invalid input!")
+            return False
 
         # Make sure the selected tile is empty
         selected_position = self.tile_number_to_position(player_input)
@@ -137,7 +142,7 @@ class TicTacToe:
         while True:
             self.display_board()
             print("Player " + str(turn) + "'s turn")
-            choice = input("Choice (1-" + str(len(self.tiles)) + ", -1 to exit the game): ")
+            choice = input("Choice (1-" + str(len(self.tiles)) + ", " + str(self.EXIT) + " to exit the game): ")
 
             # Validate input
             if not (self.is_valid(choice)):
